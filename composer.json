@@ -1,5 +1,5 @@
 {
-    "name": "werneckbh/laravel-qr-code",
+    "name": "giauphan/laravel-qr-code",
     "description": "QR Code Generator for PHP wrapper for Laravel",
     "license": "MIT",
     "authors": [

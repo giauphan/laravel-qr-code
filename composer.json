@@ -10,7 +10,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "giauphan/qr-code":"1.0.0"
+        "giauphan/qr-code":"*"
     },
     "autoload": {
         "psr-4": {

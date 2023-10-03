@@ -167,7 +167,7 @@ class QRCodeFactory
      * @throws \QR_Code\Exceptions\InvalidVCardAddressEntryException
      * @throws \QR_Code\Exceptions\InvalidVCardPhoneEntryException
      */
-    public function vCard(string $firstName  = null, string $lastName  = null, string $title = null, string $email = null, string $company = null,string $job = null,string $url = null, array $addresses = null, array $phones = null): QR_VCard
+    public function vCard(string $firstName  = null, string $lastName  = null, string $title = null, string $email = null, string $company = '',string $job = '',string $url = '', array $addresses = [], array $phones = []): QR_VCard
     {
         // $this->validateVCardAddresses($addresses);
         // $this->validatePrefAddresses($addresses);

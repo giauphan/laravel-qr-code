@@ -59,7 +59,7 @@ class QRCodeFactory
      */
     public function email(string $toEmail, string $body, string $subject): QR_EmailMessage
     {
-        if (trim($toEmail) === '') {
+        if (trim($toEmail) === null) {
             throw new EmptyTextException('Recipient email cannot be empty');
         }
 
@@ -117,7 +117,7 @@ class QRCodeFactory
      */
     public function text(string $data): QR_Text
     {
-        if (trim($data) === '') {
+        if (trim($data) === null) {
             throw new EmptyTextException('Text cannot be empty');
         }
 
@@ -135,7 +135,7 @@ class QRCodeFactory
      */
     public function url(string $url = null): QR_Url
     {
-        // if (trim($url) === '') {
+        // if (trim($url) === null) {
         //     throw new EmptyTextException('Url cannot be empty');
         // }
 
@@ -167,7 +167,7 @@ class QRCodeFactory
      * @throws \QR_Code\Exceptions\InvalidVCardAddressEntryException
      * @throws \QR_Code\Exceptions\InvalidVCardPhoneEntryException
      */
-    public function vCard(string $firstName  = null, string $lastName  = null, string $title = '', string $email = '', string $company = '',string $job = '',string $url = '', array $addresses = [], array $phones = []): QR_VCard
+    public function vCard(string $firstName  = null, string $lastName  = null, string $title = null, string $email = null, string $company = null,string $job = null,string $url = null, array $addresses = [], array $phones = []): QR_VCard
     {
         // $this->validateVCardAddresses($addresses);
         // $this->validatePrefAddresses($addresses);

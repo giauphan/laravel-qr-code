@@ -1,0 +1,30 @@
+{
+    "name": "werneckbh/laravel-qr-code",
+    "description": "QR Code Generator for PHP wrapper for Laravel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Phan Nhut Giau",
+            "email": "giauphan012@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "giauphan/qr-code":"1.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "LaravelQRCode\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelQRCode\\Providers\\QRCodeServiceProvider"
+            ],
+            "aliases": {
+                "QRCode": "LaravelQRCode\\Facades\\QRCode"
+            }
+        }
+    }
+}

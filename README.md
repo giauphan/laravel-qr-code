@@ -50,9 +50,13 @@
   ```php
   <?php
   
-  Route::get('qr-code', function () 
-  {
-    return QRCode::text('QR Code Generator for Laravel!')->png();    
+  Route::get('qr-code', function () {
+    $path = public_path().'/qr-code.png';
+    $filename = '/qr-code.png';
+    QRCode::text('QR Code Generator for Laravel!')
+        ->setOutfile($path )
+        ->png();
+    return '<img src=' . $filename . '>';
   });
   
   ```

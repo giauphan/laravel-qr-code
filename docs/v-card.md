@@ -13,6 +13,9 @@ Route::get('qr-code/examples/v-card', function ()
     $lastName = 'Doe';
     $title = 'Mr.';
     $email = 'john.doe@example.com';
+    $company = "Acme Inc.";
+    $job = "Developer";
+    $url = "https://example.com";
     
     // Addresses
     $homeAddress = [
@@ -55,7 +58,7 @@ Route::get('qr-code/examples/v-card', function ()
     
     $phones = [$workPhone, $homePhone, $cellPhone];
     
-    return QRCode::vCard($firstName, $lastName, $title, $email, $addresses, $phones)
+    return QRCode::vCard($firstName, $lastName, $title, $email, $company, $job, $url, $addresses, $phones)
                 ->setErrorCorrectionLevel('H')
                 ->setSize(4)
                 ->setMargin(2)

@@ -13,6 +13,7 @@ Route::get('qr-code/examples/v-card', function ()
     $lastName = 'Doe';
     $title = 'Mr.';
     $email = 'john.doe@example.com';
+
     $company = "Acme Inc.";
     $job = "Developer";
     $url = "https://example.com";

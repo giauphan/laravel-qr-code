@@ -1,0 +1,65 @@
+name: Bug Report
+description: Report an issue or unexpected behavior
+labels: [bug, unconfirmed, medium priority]
+projects: ['laravel-qr-code']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Before opening a bug report, please search the existing issues (both open and closed).**
+
+        ---
+        
+        Thank you for reporting a bug! To help us resolve this issue quickly, please provide the following details.
+
+  - type: input
+    id: package-version
+    attributes:
+      label: Package Version
+      description: Specify the version of the package you are using.
+      placeholder: e.g., v3.0.0
+    validations:
+      required: true
+  - type: input
+    id: laravel-version
+    attributes:
+      label: Laravel Version
+      description: Provide the Laravel version used in your project.
+      placeholder: e.g., v10.0.0
+    validations:
+      required: true
+  - type: input
+    id: php-version
+    attributes:
+      label: PHP Version
+      description: Specify the PHP version your server is running.
+      placeholder: e.g., PHP 8.3.0
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Problem Description
+      description: Describe the issue you encountered in detail.
+    validations:
+      required: true
+  - type: textarea
+    id: expectation
+    attributes:
+      label: Expected Behavior
+      description: Explain what you expected to happen instead of the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Provide clear, step-by-step instructions to reproduce the issue. Include only the minimum required code to replicate the problem. **Issues with incomplete replication steps will be automatically closed.**
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant Log Output
+      description: Include relevant log entries if applicable (no backticks needed).
+      render: shell

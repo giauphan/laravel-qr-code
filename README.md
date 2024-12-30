@@ -9,7 +9,7 @@
  Install using **composer**:
 
  ```bash
-composer require giauphan/laravel-qr-code:v1.0.2
+composer require giauphan/laravel-qr-code:v1.0.3
  ```
 ##### Laravel 5.4 (5.5+ can skip this step)
  

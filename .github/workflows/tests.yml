@@ -1,0 +1,45 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php: ['8.2', '8.3', '8.4']
+        laravel: ['12.*', '13.x-dev']
+        testbench: ['^10.0', '11.x-dev']
+        exclude:
+          - php: '8.2'
+            laravel: '13.x-dev'
+          - laravel: '12.*'
+            testbench: '11.x-dev'
+          - laravel: '13.x-dev'
+            testbench: '^10.0'
+
+    name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+
+      - name: Configure minimum stability for dev
+        run: composer config minimum-stability dev
+
+      - name: Install dependencies
+        run: |
+          composer require "illuminate/support:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+          composer update --prefer-dist --no-interaction --no-progress
+
+      - name: Run test
+        run: vendor/bin/phpunit tests/ActivationTest.php

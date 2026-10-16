@@ -1,19 +1,25 @@
 <?php
-require 'vendor/autoload.php';
+use Orchestra\Testbench\TestCase;
 
-try {
-    $app = new \Illuminate\Container\Container();
-    $provider = new \LaravelQRCode\Providers\QRCodeServiceProvider($app);
-    $provider->register();
-
-    if ($app->bound('qr-code')) {
-        echo "Successfully activated and bound qr-code.\n";
-        exit(0);
-    } else {
-        echo "Failed to bind qr-code.\n";
-        exit(1);
+class ActivationTest extends TestCase
+{
+    protected function getPackageProviders($app)
+    {
+        return [
+            \LaravelQRCode\Providers\QRCodeServiceProvider::class,
+        ];
     }
-} catch (Throwable $e) {
-    echo "Error: " . $e->getMessage() . "\n";
-    exit(1);
+
+    protected function getPackageAliases($app)
+    {
+        return [
+            'QRCode' => \LaravelQRCode\Facades\QRCode::class,
+        ];
+    }
+
+    public function test_service_provider_binds_qr_code()
+    {
+        $this->assertTrue($this->app->bound('qr-code'));
+        $this->assertInstanceOf(\LaravelQRCode\QRCodeFactory::class, $this->app->make('qr-code'));
+    }
 }

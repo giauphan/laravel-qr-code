@@ -10,8 +10,16 @@ jobs:
 
     strategy:
       matrix:
-        php: [8.2, 8.3, 8.4]
-        laravel: [12.*, 13.*]
+        php: ['8.2', '8.3', '8.4']
+        laravel: ['12.*', '13.x-dev']
+        testbench: ['^10.0', '11.x-dev']
+        exclude:
+          - php: '8.2'
+            laravel: '13.x-dev'
+          - laravel: '12.*'
+            testbench: '11.x-dev'
+          - laravel: '13.x-dev'
+            testbench: '^10.0'
 
     name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
 
@@ -25,10 +33,13 @@ jobs:
           php-version: ${{ matrix.php }}
           coverage: none
 
+      - name: Configure minimum stability for dev
+        run: composer config minimum-stability dev
+
       - name: Install dependencies
         run: |
-          composer require "illuminate/support:${{ matrix.laravel }}" --no-interaction --no-update
+          composer require "illuminate/support:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
           composer update --prefer-dist --no-interaction --no-progress
 
       - name: Run test
-        run: php tests/ActivationTest.php
+        run: vendor/bin/phpunit tests/ActivationTest.php
